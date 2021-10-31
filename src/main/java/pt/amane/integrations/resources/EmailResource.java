@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.amane.integrations.detos.EmailDTO;
+import pt.amane.integrations.services.EmailService;
 
 @RestController
 @RequestMapping(value = "/emails")
 public class EmailResource {
 
-//	@Autowired 
-//	private 
+	@Autowired 
+	private EmailService service;
 	
 	@PostMapping
 	public ResponseEntity<Void> send(@RequestBody EmailDTO dto){
+		service.sendEmail(dto);
 		return ResponseEntity.noContent().build();
 	}
 	
